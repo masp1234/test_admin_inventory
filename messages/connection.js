@@ -1,28 +1,30 @@
 import 'dotenv/config';
 import amqp from 'amqplib';
 
-export default async function connectToRabbitMQ(){
+let connection = null;
+let channel = null;
+const exchange = 'product';
 
-    const exchange = 'product';
-    let channel = null;
+async function connectToRabbitMQ() {
+    if (channel) {
+        return { channel, exchange };
+    }
 
-    console.log(`Connecting to RabbitMQ exchange: "${exchange}"...`)
+    console.log(`Connecting to RabbitMQ exchange: "${exchange}"...`);
 
     try {
-        const connection = await amqp.connect(`amqp://${process.env.AMQP_HOST}`);
+        connection = await amqp.connect(`amqp://${process.env.AMQP_HOST}`);
         channel = await connection.createChannel();
 
         channel.assertExchange(exchange, 'fanout', {
-        durable: false
-    });
-    
-    }
-    catch(error) {
+            durable: false
+        });
+    } catch (error) {
         console.log(error);
     }
-    console.log(`Connected to RabbitMQ exchange: "${exchange}`)
-    return {
-        channel,
-        exchange
-    }
-    }
+
+    console.log(`Connection to RabbitMQ exchange: "${exchange}" established`);
+    return { channel, exchange };
+}
+
+export default connectToRabbitMQ;
