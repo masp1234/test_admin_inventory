@@ -32,7 +32,7 @@ describe('Tests for functions that publishes product events', () => {
         expect(publishMock.mock.calls[0])
             .toStrictEqual([
                 "test exchange",
-                 "",
+                "product change",
                 Buffer.from(JSON.stringify(testMessage))]);
     })
     

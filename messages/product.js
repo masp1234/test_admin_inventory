@@ -9,7 +9,7 @@ async function publishProductEvent(product, productStatus) {
             status: productStatus,
             product: product
         }
-        channel.publish(exchange, '', Buffer.from(JSON.stringify(message)));
+        channel.publish(exchange, 'product change', Buffer.from(JSON.stringify(message)));
     }
 
 export {
