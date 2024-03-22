@@ -11,6 +11,7 @@ app.get("/test", async (req, res) => {
     const createdProduct = await Product.create({ name: 'test product' });
     const createdCategory = await Category.create({ name: 'test category'});
     await createdProduct.addCategory(createdCategory);
+    publishProductEvent({ id: 123}, 'created')
 
     const foundProduct = await Product.findOne({
         where: {

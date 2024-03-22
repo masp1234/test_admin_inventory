@@ -6,7 +6,9 @@ let channel = null;
 const exchange = 'product';
 
 async function connectToRabbitMQ() {
+
     if (channel) {
+        console.log(`Reusing already open channel to exchange: ${exchange}`)
         return { channel, exchange };
     }
 
@@ -17,7 +19,7 @@ async function connectToRabbitMQ() {
         channel = await connection.createChannel();
 
         channel.assertExchange(exchange, 'fanout', {
-            durable: false
+            durable: true
         });
     } catch (error) {
         console.log(error);
