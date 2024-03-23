@@ -17,7 +17,7 @@ async function connectToRabbitMQ() {
         connection = await amqp.connect(`amqp://${process.env.AMQP_HOST}`);
         channel = await connection.createChannel();
 
-        channel.assertExchange(exchange, 'direct', {
+        await channel.assertExchange(exchange, 'direct', {
             durable: true
         });
     } catch (error) {
