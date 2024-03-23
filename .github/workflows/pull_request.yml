@@ -3,7 +3,7 @@ name: CI
 on:
   pull_request:
     branches:
-      - 'feature/*' # Trigger the workflow for pull requests targeting feature branches
+      - 'main'
 
 jobs:
   build:
