@@ -6,7 +6,7 @@ on:
       - 'main'
 
 jobs:
-  build:
+  testing-check:
     name: Build and Test
     runs-on: ubuntu-latest
 
