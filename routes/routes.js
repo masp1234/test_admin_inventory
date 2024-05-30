@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-// Sample data - replace this with your database integration
 let items = [];
 
 router.get('/AllItems', (req, res) => {
