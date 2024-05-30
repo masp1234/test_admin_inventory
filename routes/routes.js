@@ -9,8 +9,6 @@ router.get('/AllItems', (req, res) => {
   res.json(items);
 });
 
-// Get single item by ID
-// Replace ':id' with id of an existing item
 router.get('/:id', (req, res) => {
   const id = req.params.id;
   const item = items.find(item => item.id === id);
