@@ -4,7 +4,6 @@ const router = express.Router();
 // Sample data - replace this with your database integration
 let items = [];
 
-// Get all items
 router.get('/AllItems', (req, res) => {
   res.json(items);
 });
